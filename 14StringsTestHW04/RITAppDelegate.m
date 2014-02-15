@@ -17,62 +17,107 @@
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     
-    NSString* text = @"The NSString class declares the programmatic interface for an object that manages immutable strings. An immutable string is a text string that is defined when it is created and subsequently cannot be changed. NSString is implemented to represent an array of Unicode characters, in other words, a text string. The mutable subclass of NSString is NSMutableString. The NSString class has two primitive methods—length and characterAtIndex:—that provide the basis for all other methods in its interface. The length method returns the total number of Unicode characters in the string. characterAtIndex: gives access to each character in the string by index, with index values starting at 0. NSString declares methods for finding and comparing strings. It also declares methods for reading numeric values from strings, for combining strings in various ways, and for converting a string to different forms (such as encoding and case changes). The Application Kit also uses NSParagraphStyle and its subclass NSMutableParagraphStyle to encapsulate the paragraph or ruler attributes used by the NSAttributedString classes. Additionally, methods to support string drawing are described in NSString Additions, found in the Application Kit. NSString is “toll-free bridged” with its Core Foundation counterpart, CFStringRef. See “Toll-Free Bridging” for more information on toll-free bridging. String Objects NSString objects represent character strings in frameworks. Representing strings as objects allows you to use strings wherever you use other objects. It also provides the benefits of encapsulation, so that string objects can use whatever encoding and storage are needed for efficiency while simply appearing as arrays of characters. The cluster’s two public classes, NSString and NSMutableString, declare the programmatic interface for non-editable and editable strings, respectively. Note: An immutable string is a text string that is defined when it is created and subsequently cannot be changed. An immutable string is implemented as an array of Unicode characters (in other words, a text string). To create and manage an immutable string, use the NSString class. To construct and manage a string that can be changed after it has been created, use NSMutableString. The objects you create using NSString and NSMutableString are referred to as string objects (or, when no confusion will result, merely as strings). The term C string refers to the standard char * type. Because of the nature of class clusters, string objects aren’t actual instances of the NSString or NSMutableString classes but of one of their private subclasses. Although a string object’s class is private, its interface is public, as declared by these abstract superclasses, NSString and NSMutableString. The string classes adopt the NSCopying and NSMutableCopying protocols, making it convenient to convert a string of one type to the other. Understanding characters A string object presents itself as an array of Unicode characters (Unicode is a registered trademark of Unicode, Inc.). You can determine how many characters a string object contains with the length method and can retrieve a specific character with the characterAtIndex: method. These two “primitive” methods provide basic access to a string object. Most use of strings, however, is at a higher level, with the strings being treated as single entities: You compare strings against one another, search them for substrings, combine them into new strings, and so on. If you need to access string objects character by character, you must understand the Unicode character encoding, specifically issues related to composed character sequences. For details see The Unicode Standard, Version 4.0 (The Unicode Consortium, Boston: Addison-Wesley, 2003, ISBN 0-321-18578-1) and the Unicode Consortium web site: http://www.unicode.org/. See also “Characters and Grapheme Clusters” in String Programming Guide. Interpreting UTF-16-encoded data When creating an NSString object from a UTF-16-encoded string (or a byte stream interpreted as UTF-16), if the byte order is not otherwise specified, NSString assumes that the UTF-16 characters are big-endian, unless there is a BOM (byte-order mark), in which case the BOM dictates the byte order. When creating an NSString object from an array of Unicode characters, the returned string is always native-endian, since the array always contains Unicode characters in native byte order. Distributed objects Over distributed-object connections, mutable string objects are passed by-reference and immutable string objects are passed by-copy. Subclassing Notes It is possible to subclass NSString (and NSMutableString), but doing so requires providing storage facilities for the string (which is not inherited by subclasses) and implementing two primitive methods. The abstract NSString and NSMutableString classes are the public interface of a class cluster consisting mostly of private, concrete classes that create and return a string object appropriate for a given situation. Making your own concrete subclass of this cluster imposes certain requirements (discussed in “Methods to Override”). Make sure your reasons for subclassing NSString are valid. Instances of your subclass should represent a string and not something else. Thus the only attributes the subclass should have are the length of the character buffer it’s managing and access to individual characters in the buffer. Valid reasons for making a subclass of NSString include providing a different backing store (perhaps for better performance) or implementing some aspect of object behavior differently, such as memory management. If your purpose is to add non-essential attributes or metadata to your subclass of NSString, a better alternative would be object composition (see “Alternatives to Subclassing”). Cocoa already provides an example of this with the NSAttributedString class. Any subclass of NSString must override the primitive instance methods length and characterAtIndex:. These methods must operate on the backing store that you provide for the characters of the string. For this backing store you can use a static array, a dynamically allocated buffer, a standard NSString object, or some other data type or mechanism. You may also choose to override, partially or fully, any other NSString method for which you want to provide an alternative implementation. For example, for better performance it is recommended that you override getCharacters:range: and give it a faster implementation. You might want to implement an initializer for your subclass that is suited to the backing store that the subclass is managing. The NSString class does not have a designated initializer, so your initializer need only invoke the init method of super. The NSString class adopts the NSCopying, NSMutableCopying, and NSCoding protocols; if you want instances of your own custom subclass created from copying or coding, override the methods in these protocols. Note that you shouldn’t override the hash method. Alternatives to Subclassing Often a better and easier alternative to making a subclass of NSString—or of any other abstract, public class of a class cluster, for that matter—is object composition. This is especially the case when your intent is to add to the subclass metadata or some other attribute that is not essential to a string object. In object composition, you would have an NSString object as one instance variable of your custom class (typically a subclass of NSObject) and one or more instance variables that store the metadata that you want for the custom object. Then just design your subclass interface to include accessor methods for the embedded string object and the metadata. If the behavior you want to add supplements that of the existing class, you could write a category on NSString. Keep in mind, however, that this category will be in effect for all instances of NSString that you use, and this might have unintended consequences.";
-    
-    NSRange     range       = NSMakeRange(0, 1);
-    NSInteger   length      = [text length];
-    BOOL        itIsWord    = NO;
+    NSString* text = @"The NSString class declares the programmatic interface for an object that manages immutable strings. An immutable string is a text string that is defined when it is created and subsequently cannot be changed. NSString is implemented to represent an array of Unicode characters, in other words, a text string. The mutable subclass of NSString is NSMutableString. The NSString class has two primitive methods—length and characterAtIndex:—that provide the basis for all other methods in its interface. The length method returns the total number of Unicode characters in the string. characterAtIndex: gives access to each character in the string by index, with index values starting at 0. NSString declares methods for finding and comparing strings. It also declares methods for reading numeric values from strings, for combining strings in various ways, and for converting a string to different forms (such as encoding and case changes). The Application Kit also uses NSParagraphStyle and its subclass NSMutableParagraphStyle to encapsulate the paragraph or ruler attributes used by the NSAttributedString classes. Additionally, methods to support string drawing are described in NSString Additions, found in the Application Kit. NSString is “toll-free bridged” with its Core Foundation counterpart, CFStringRef. See “Toll-Free Bridging” for more information on toll-free bridging. String Objects NSString objects represent character strings in frameworks. Representing strings as objects allows you to use strings wherever you use other objects. It also provides the benefits of encapsulation, so that string objects can use whatever encoding and storage are needed for efficiency while simply appearing as arrays of characters. The cluster’s two public classes, NSString and NSMutableString, declare the programmatic interface for non-editable and editable strings, respectively. Note: An immutable string is a text string that is defined when it is created and subsequently cannot be changed. An immutable string is implemented as an array of Unicode characters (in other words, a text string). To create and manage an immutable string, use the NSString class. To construct and manage a string that can be changed after it has been created, use NSMutableString. The objects you create using NSString and NSMutableString are referred to as string objects (or, when no confusion will result, merely as strings).";
     
     
-    for (int i = 0; i < length; i++) {
-        range.location = i;
-        NSString*   character = [text substringWithRange:range];
-        
-        
-        
-        NSLog(@"%@", character);
-    }
+    NSLog(@"\n\nInitial string = \n%@", text);
     
+    //NSMutableString* finalString = [self transformText01:text];
     
-    /*
-    NSMutableArray* array02 = [NSMutableArray array];
+    NSMutableString* finalString = [self transformText02:text];
     
-    for (NSString* string in array01) {
-        NSRange range = [string rangeOfString:@"NSString"];
-        if (range.location != NSNotFound) {
-            [array02 addObject:string];
-        }
-    }
-    
-    NSInteger index = 1;
-    NSMutableArray* inverseSentenceArray    = [NSMutableArray array];
-    NSString*       inverseSentenceString;
-    NSMutableArray* inverseArray            = [NSMutableArray array];
-    
-    for (NSString* string in array02) {
-        
-        NSArray* sentenceArray = [string componentsSeparatedByString:@" "];
-        
-        int count = [sentenceArray count] - 1;
-        
-        for (int i = count; i > 0; i--) {
-            [inverseSentenceArray addObject:sentenceArray[i]];
-        }
-        
-        inverseSentenceString = [inverseSentenceArray componentsJoinedByString:@" "];
-        
-        [inverseArray addObject:inverseSentenceString];
-        
-        [inverseSentenceArray removeAllObjects];
-        
-        NSLog(@"%02d) %@", index, inverseSentenceString);
-        index++;
-    }
-    NSLog(@"\n");
-    */
-    
+    NSLog(@"\n\nFinal string = \n%@\n\n",finalString);
     
     return YES;
+}
+
+- (NSMutableString*) transformText01:(NSString*) text {
+    
+    NSMutableString*    finalString         = [NSMutableString string];
+    // divide text into sentences
+    NSArray*            sentenceArray       = [text componentsSeparatedByString:@". "];
+    NSCharacterSet*     letterCharacterSet  = [NSCharacterSet letterCharacterSet];
+    NSString*           zeroString          = @"";
+    NSString*           spaceString         = @" ";
+    NSString*           dotAndSpace         = @". ";
+    NSInteger textLength = [sentenceArray count];
+    NSInteger sentenceCount = 0;
+    // sentences cycle
+    for (NSString* sentence in sentenceArray) {
+        // divide sentence into words
+        NSArray* wordsArray = [sentence componentsSeparatedByString:@" "];
+        NSInteger sentenceLength = [wordsArray count];
+        NSInteger wordCount = 0;
+        // process every word in cycle
+        for (NSString* word in wordsArray) {
+            
+            NSMutableString* wordMutable = [NSMutableString stringWithString:word];
+            NSInteger wordLength = [word length];
+            // search the first letter and lower case it
+            for (int i = 0; i < wordLength; i++) {
+                unichar ch = [wordMutable characterAtIndex:i];
+                if ([letterCharacterSet characterIsMember:ch]) {
+                    NSString* chString = [[NSString stringWithCharacters:&ch length:1] lowercaseString];
+                    [wordMutable replaceCharactersInRange:NSMakeRange(i, 1) withString:chString];
+                    break;
+                }
+            }
+            // search the last letter in word and upper case it
+            for (int i = wordLength - 1; i >= 0; i--) {
+                unichar ch = [wordMutable characterAtIndex:i];
+                if ([letterCharacterSet characterIsMember:ch]) {
+                    NSString* chString = [[NSString stringWithCharacters:&ch length:1] uppercaseString];
+                    [wordMutable replaceCharactersInRange:NSMakeRange(i, 1) withString:chString];
+                    break;
+                }
+            }
+            // add whitespaces between words except last word
+            [finalString appendFormat:@"%@%@", wordMutable, (wordCount == sentenceLength - 1)?zeroString:spaceString];
+            wordCount++;
+        }
+        // add dot and spaces between sentenses except last sentence
+        [finalString appendString:(sentenceCount == textLength - 1)?zeroString:dotAndSpace];
+        sentenceCount++;
+    }
+    return finalString;
+}
+
+- (NSMutableString*) transformText02:(NSString*) text {
+    
+    __block NSMutableString*    finalString         = [NSMutableString stringWithString:text];
+    
+    NSRange range = NSMakeRange(0, [text length]);
+    
+    [finalString enumerateSubstringsInRange:range
+                                    options:NSStringEnumerationByWords
+                                 usingBlock:^(NSString *substring,
+                                              NSRange substringRange,
+                                              NSRange enclosingRange,
+                                              BOOL *stop) {
+                                     
+                                     NSRange firstCharRange = NSMakeRange(substringRange.location, 1);
+                                     
+                                     NSString* firstChar = [[finalString
+                                                             substringWithRange:firstCharRange]
+                                                            lowercaseString];
+                                     
+                                     [finalString
+                                      replaceCharactersInRange:firstCharRange
+                                      withString:firstChar];
+                                     
+                                     NSRange lastCharRange = NSMakeRange(substringRange.location + substringRange.length - 1, 1);
+                                     
+                                     NSString* lastChar = [[finalString
+                                                            substringWithRange:lastCharRange]
+                                                           uppercaseString];
+                                     
+                                     [finalString
+                                      replaceCharactersInRange:lastCharRange
+                                      withString:lastChar];
+                                     
+                                 }];
+
+    return finalString;
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application
