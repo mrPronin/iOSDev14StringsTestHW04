@@ -19,6 +19,7 @@
 		A20B81DF18AD8DAE00C547A3 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A20B81C718AD8DAE00C547A3 /* UIKit.framework */; };
 		A20B81E718AD8DAE00C547A3 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A20B81E518AD8DAE00C547A3 /* InfoPlist.strings */; };
 		A20B81E918AD8DAE00C547A3 /* _4StringsTestHW04Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = A20B81E818AD8DAE00C547A3 /* _4StringsTestHW04Tests.m */; };
+		A2F6A7FA191183F8008F3141 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = A2F6A7F9191183F8008F3141 /* README.md */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,6 +49,7 @@
 		A20B81E418AD8DAE00C547A3 /* 14StringsTestHW04Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "14StringsTestHW04Tests-Info.plist"; sourceTree = "<group>"; };
 		A20B81E618AD8DAE00C547A3 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		A20B81E818AD8DAE00C547A3 /* _4StringsTestHW04Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = _4StringsTestHW04Tests.m; sourceTree = "<group>"; };
+		A2F6A7F9191183F8008F3141 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,6 +79,7 @@
 		A20B81B718AD8DAE00C547A3 = {
 			isa = PBXGroup;
 			children = (
+				A2F6A7F9191183F8008F3141 /* README.md */,
 				A20B81C918AD8DAE00C547A3 /* 14StringsTestHW04 */,
 				A20B81E218AD8DAE00C547A3 /* 14StringsTestHW04Tests */,
 				A20B81C218AD8DAE00C547A3 /* Frameworks */,
@@ -220,6 +223,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A2F6A7FA191183F8008F3141 /* README.md in Resources */,
 				A20B81CE18AD8DAE00C547A3 /* InfoPlist.strings in Resources */,
 				A20B81D618AD8DAE00C547A3 /* Images.xcassets in Resources */,
 			);
@@ -442,6 +446,7 @@
 				A20B81EE18AD8DAE00C547A3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		A20B81EF18AD8DAE00C547A3 /* Build configuration list for PBXNativeTarget "14StringsTestHW04Tests" */ = {
 			isa = XCConfigurationList;
@@ -450,6 +455,7 @@
 				A20B81F118AD8DAE00C547A3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
